@@ -1,0 +1,43 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+# Package Name
+
+```{r}
+available::available("nomisr")
+```
+
+# Good practice
+
+```{r}
+goodpractice::gp()
+```
+
+Everything is good! 
+Well done ! There was still medium coverage at the submission, it is 100% now. 
+
+# Fonction / Variable Naming
+
+# Readme
+
+```
+* The package name
+* Badges for continuous integration and test coverage, the badge for rOpenSci peer-review once it has started (see below), and any other badges
+* Short description of the package
+* Installation instructions
+* Brief demonstration usage
+* If applicable, how the package compares to other similar packages and/or how it relates to other packages
+* Citation information
+```
+
++ I would be more precise on what the NOMIS database is. Submission issue mentionned UK database but not the README. While reviewing, I had a doubt and went to check on [NOMIS](https://www.nomisweb.co.uk/).
++ More documentation needed on the functions and the examples
++ Put package documentation link in the title of the repo like in the [`reprex`](https://github.com/tidyverse/reprex). By the way, you can add a more descriptive description on your github repo and some tags. 
+
+
+# About the API
+
+I went to the documentation and saw SMDX. Know that there is package for that. 
+
