@@ -44,4 +44,5 @@ I went to the documentation and saw SMDX. Know that there is package for that.
 
 + There is a vignette for introduction. 
 + About the format, it is `html_document` not `html_vignette`. May not be important
++ not build - **to check**
 
