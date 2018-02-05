@@ -18,6 +18,8 @@ goodpractice::gp()
 Everything is good! 
 Well done ! There was still medium coverage at the submission, it is 100% now. 
 
+> Verify Test on travis.
+
 # Fonction / Variable Naming
 
 # Readme
@@ -35,6 +37,7 @@ Well done ! There was still medium coverage at the submission, it is 100% now.
 + I would be more precise on what the NOMIS database is. Submission issue mentionned UK database but not the README. While reviewing, I had a doubt and went to check on [NOMIS](https://www.nomisweb.co.uk/).
 + More documentation needed on the functions and the examples
 + Put package documentation link in the title of the repo like in the [`reprex`](https://github.com/tidyverse/reprex). By the way, you can add a more descriptive description on your github repo and some tags. 
++  could precise that it uses the tibble format (from the tidyverse)
 
 # About the API
 
@@ -45,4 +48,21 @@ I went to the documentation and saw SMDX. Know that there is package for that.
 + There is a vignette for introduction. 
 + About the format, it is `html_document` not `html_vignette`. May not be important
 + not build - **to check**
+
+# Examples
+
++ All the example have a don't run statement. Check for other API package and on the book
+
+# DESCRIPTION 
+
++ no need to *Author* field if using *Authors@R*
+
+# Various
+
++ [minor] I would put the url of the API in its own variable. I think it is better practice and more efficient to maintain in case of change in the url (e.g *V0.2*). The url is used several time and a change would mean copy pasting. another utils function could help building the url (`paste0` is used three times)
++ `suppressMessage` is used to not show the message of `readr::read_csv`. However, the message appears because column are guessed and not set. It is good practice to set column type in `readr`. In an API package like this one, it make even more sense because it could helps be aware of any change in the format. 
+
+# Functionnality
+
++ 
 
