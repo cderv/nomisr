@@ -36,8 +36,12 @@ Well done ! There was still medium coverage at the submission, it is 100% now.
 + More documentation needed on the functions and the examples
 + Put package documentation link in the title of the repo like in the [`reprex`](https://github.com/tidyverse/reprex). By the way, you can add a more descriptive description on your github repo and some tags. 
 
-
 # About the API
 
 I went to the documentation and saw SMDX. Know that there is package for that. 
+
+# Vignette
+
++ There is a vignette for introduction. 
++ About the format, it is `html_document` not `html_vignette`. May not be important
 
