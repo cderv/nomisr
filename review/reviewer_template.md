@@ -108,38 +108,34 @@ see below parts for details
 
 #### README improvement
 
-+ I would be more precise on what the NOMIS database is and for who it is. For
-example, I found that this submission issue mentioned UK database but not the
-README. You help file for the package as pretty clear description of what it is
-for. While reviewing, I had a doubt and went to check on
-[NOMIS](https://www.nomisweb.co.uk/). This is why I think the statement of need
-is not complete.
-+ More documentation needed on the functions and the examples
-+ Put package documentation link in the title of the repo like in the
-[`reprex`](https://github.com/tidyverse/reprex). By the way, you can add a more
-descriptive description on your github repo and some tags.
++ I would be more precise on what the NOMIS database is and for who it is. For example, I found that this submission issue mentioned UK database but not the README. You help file for the package as pretty clear description of what it is for. While reviewing, I had a doubt and went to check on [NOMIS](https://www.nomisweb.co.uk/). This is why I think the statement of need is not complete.
++ It feels like the README could get more examples on what your package can do. Only one of your functions is shown in the readme. 
++ Put package documentation link in the title of the repo like in the [`reprex` repo](https://github.com/tidyverse/reprex). By the way, you can add a more descriptive description on your github repo and some tags.
 +  could precise that it uses the tibble format (from the tidyverse)
 
 #### Vignettes improvement
 
-+ Vignettes was not built when I installed the package with `devtools::install_github`. Did not know if this intended behavior or not. 
++ Vignette was not built when I installed the package with `devtools::install_github`. Did not know if this intended behavior or not. 
 + I tried to build the vignette locally then: it worked. 
-    + However, there is a problem a result formatting with the tibble. (I think because you use `result = 'asis'` in code chunk) and because every results are not tables (`y$annotations.annotation` is a list for example.) so it does not print nicely.
-    + The vignette do not show any code to get the results - I would show them for someone to learn. (with `echo = TRUE`)
-    + This is visible on your [website](https://docs.evanodell.com/nomisr/articles/introduction.html) too
+    + However, there is a problem on result formatting with the tibble. (I think because you use `result = 'asis'` in code chunks) and because every results are not tables (`y$annotations.annotation` is a list for example.) so it does not print nicely.
+    + The vignette do not show any code to get the results - I would show them for someone to learn how to use your function, as examples. (with `echo = TRUE`)
+    + The formatting issue is visible on your [website](https://docs.evanodell.com/nomisr/articles/introduction.html) too
 + I think the vignette contains necessary information but does not show enough examples on how to retrieve data in the objects you return. You mentioned the three list columns with nested data.frame but not show how correctly extracts the info.
 + It is pretty clear that you package allows to retrieve a large amount of data from the NOMIS API. it seems necessary to always use `nomis_data_info`, then `nomis_codes` then `nomis_get_data` to be sure to not retrieve to much. The vignette helps you understand that. It could appears to in your readme, and it could be more clear how to construct a pipeline for good practice with this API.
-+ If you need help on all this, do not hesitate to ask.
-+ These improvement are the reason why I did not check the vignettes box, even if there is one in the github repo and doc.
+
+These improvement are the reason why I did not check the vignettes box, even if there is one in the github repo and doc.
+If you need help on all this, do not hesitate to ask.
+
 
 #### About documentation of functions and examples
 
 + All functions are well documented.
-+ I encounter some issue running the example because of Timeout. I believed this is what you meant in your by "there are some limits to the amount of data that can be retrieved within a certain period of time, although those are not published.". The maybe some improvement to do on this. (see under)
++ I encountered some issues running the examples because of a timeout. I believe this is what you meant in your by "there are some limits to the amount of data that can be retrieved within a certain period of time, although those are not published.". The maybe some improvement to do on this. (see under)
 + Is this the reason why you enclosed each example in `\dontrun{}` statement ? am I not sure on what is the recommendation for API package like this one for example ?  `\dontrun{}` does allow anyone to run examples with something like `example("nomis_codes", package = "nomisr")`. Idea : Maybe `\donttest{}` is better here: does show in help and runs with `example`, but not run by `R CMD check` (so not run by CRAN ?) - see [rd vignette from roxygen2](https://cran.r-project.org/web/packages/roxygen2/vignettes/rd.html)
-+ I ran all tests with `devtools::run_examples(run = FALSE)` (in several time, due to timeout constraint). Everything is working. It works well for almost all, but you example assign systematically to a variable (named x or y - room for improvement) but ever show head of results. I feel that is missing.
-+ I said "almost all" because there are some very long request in `nomis_get_data`. The warning that you put in _Details_ states that it can be very slow process if calling significant amount of data. I would emphasize on this, saying this warning in _Description part of the help file. And these example should definitely not be ran.
-+ I saw you made a pkgdown website. This is great !! I did not find the source code of this website. I would have thought it leaved with the package source code. But no docs folder or gh-pages. I find it useful to have access for letting people PR your some typos or other thing and all the site from your package source code. However, you may have good reason.
++ I ran all tests with `devtools::run_examples(run = FALSE)` (in several time, due to timeout constraint). Everything is working. It works well for almost all, but your example assign systematically to a variable (named x or y - room for improvement) but never print to show head of results. I feel that is missing.
++ I said "almost all" because there are some very long request in `nomis_get_data`. The warning that you put in _Details_ states that it can be very slow process if calling significant amount of data. I would emphasize on this, saying this warning in _Description_ part of the help file. And these example should definitely not be ran.
++ I saw you made a pkgdown website. This is great !! and nice theme!    
+I did not find the source code of this website. I would have thought it leaved with the package source code. But no docs folder or gh-pages. I find it useful to have access for letting people PR your some typos or other thing and all the site from your package source code. However, you may have good reason.
 
 #### Various comments on the code
 
@@ -147,7 +143,7 @@ descriptive description on your github repo and some tags.
 
 + `suppressMessage` is used to hide the message of `readr::read_csv`. However, the message appears because column types are guessed and not set. It is good practice to set column type in `readr` with `column_types = cols(<something>)`. In an API package like this one, it make even more sense because it could helps be aware of any change in the format. (using `stop_for_problems()` or just see a message appear) - see [readr vignettes](http://readr.tidyverse.org/articles/readr.html#column-specification)
 + [minor] I don't know what are the good practice on this one. I just feel that you have a dplyr dependency in import for three functions `bind_rows`, `case_when` and `if_else` than can be easily replace with `rbind` or `if.else`. I feel that, if the former are very useful interactively in an analysis, using them in a package can be unnecessary dependency to a "big" package that can cause you some effort later on if anything change in dplyr. More of a personal point of view on this one.
-+ However, it related on how you are build your query url
++ However, it relates on how you are build your query url
 ```r
   query <- dplyr::if_else(keywords==FALSE,
                            paste0("/def.sdmx.json?search=*", 
@@ -166,14 +162,14 @@ if (keyword) {
 # or keyword_term <- if.else(keyword, "keywords-", "*")
 query <- paste0(base_query, key_word_term, search, "*")
 ```
+It would suppres a non essential dependency. 
 + The style in code could be improve in some places. You can follow some style guide to help you.
-like the one in ROpensci Guidelines in [Advanced R](http://r-pkgs.had.co.nz/r.html#style) or the one used in the [tidyverse styleguide](http://style.tidyverse.org/). They even build some tools to help like [styler](http://styler.r-lib.org/) and [lintr](https://github.com/jimhester/lintr). Example of improvement:
+like the one in ROpensci Guidelines linking to [Advanced R](http://r-pkgs.had.co.nz/r.html#style) or more recent the one used in the [tidyverse styleguide](http://style.tidyverse.org/). They even build some tools to help like [styler](http://styler.r-lib.org/) and [lintr](https://github.com/jimhester/lintr). Example of improvement:
    + put spaces after `for`or `if` and also around `=`, `==`, `+`, `>`, ...
    + indentation of code (in RStudio CTRL+i i useful). for example in `if () { } else { }`, lines of code that are inside brackets should be indented.
    + use `{}` with `if` when it does not fit on one line
    + More importantly, be consistent in all your script with the guideline you choose.
 + Know that when you want to stop on a condition, there is also `stopifnot`. For user experience, you can also return clearer error sometimes with `stop("API request did not return any results", call. = FALSE)` to not show the call for example.
-+ in `nomis_codes.R` for example, you have some `missing(codes)` but you put `codes = NULL` as default in the function. 
 + A good practice is also to use meaningful name inside your internal code, even for temporary variable. There are a lot of `x`, `a`, `q`, ... This will improve readability and the ease for others to collaborate on your code (including future you) 
 
 #### About the timeout and size of data
@@ -201,12 +197,12 @@ You could use some `tryCatch` mechanism (some useful info in [Advanced R](http:/
 + Do you know about the `rsdmx` package ? it is on [github](https://github.com/opensdmx/rsdmx) and CRAN, there is [WIKI](https://github.com/opensdmx/rsdmx/wiki). I did not find NOMIS in their listing, so I did not know if it works for you and how it could overlap with your package. 
 `rsdmx` is definitely more a generic package than yours. I just wanted to point it to you in case you did not know.
 
-#### last words
+### Last words
 
-Thank you very much letting me review this package. It pretty simple one, yet powerful as it brings to R users lots of new open data. And it does it well allowing to work in the great tidyverse directly thanks to the tibble format. 
+Thank you very much letting me review this package. It is pretty simple one, yet powerful as it brings to R users lots of new open data for UK. And it does it well allowing to work with tidyverse tools directly thanks to the tibble format. 
 
 All my remarks were toward improvement. The package in its currents state is functional, is well tested and as the minimal documentation to get start with it. 
 
-@evanodell, if you have some question or you want some help / advice on anything, feel free to reach to me, I will be glad to help you. 
+@evanodell, if you have some questions or you want some help / advice on anything, feel free to reach to me, I will be glad to help you. 
 
 @karthik, I hope I am doing fine for my first review with Ropensci, please tell me if miss something and need to review further.
