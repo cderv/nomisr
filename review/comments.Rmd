@@ -55,7 +55,8 @@ I went to the documentation and saw SMDX. Know that there is package for that.
 
 # DESCRIPTION 
 
-+ no need to *Author* field if using *Authors@R*
+
++ imports dplyr, pretty heavy. In the long terme reducing dependency could be easier.
 
 # Various
 
