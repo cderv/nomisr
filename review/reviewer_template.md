@@ -41,7 +41,7 @@ The package includes all the following forms of documentation:
 
 - [ ] **The author has responded to my review and made changes to my satisfaction. I recommend approving this package.**
 
-Estimated hours spent reviewing: 5 
+Estimated hours spent reviewing: 6 
 
 ---
 
@@ -90,9 +90,21 @@ y %>% tidyr::unnest(annotations.annotation) %>% glimpse()
 
 Following are my review comments, for improvement:
 
-#### About DESCRIPTION 
+#### About Community Guidelines
 
-+ no need to use *Author* and *Maintener* fields if you are using *Authors@R*. You can just use the latest. You can find some good example in [R package book](http://r-pkgs.had.co.nz/description.html#author). 
++ There is no contribution guidelines in the README or other CONTRIBUTING.md.
++ DESCRIPTION needs some improvement : no need to use *Author* and *Maintainer* fields if you are using *Authors@R*. You can just use the latest. You can find some good example in [R package book](http://r-pkgs.had.co.nz/description.html#author). 
+
+#### Improvement for the [packaging guidelines](https://github.com/ropensci/onboarding/blob/master/packaging_guide.md) 
+
+see below parts for details
+
++ Adding a code of conduct
++ Improve README considering it is the first entry point for discovering NOMIS API
++ Improve DESCRIPTION for authorship
++ [minor] follow [versionning advice](http://r-pkgs.had.co.nz/description.html#version) with `*.*.*.9000 ` for in development version
++ [question] I did not find why you need curl package in suggest... 
+
 
 #### README improvement
 
@@ -155,7 +167,7 @@ if (keyword) {
 query <- paste0(base_query, key_word_term, search, "*")
 ```
 + The style in code could be improve in some places. You can follow some style guide to help you.
-like the one used in the [tidyverse styleguide](http://style.tidyverse.org/). They even build some tools to help like [styler](http://styler.r-lib.org/) and [lintr](https://github.com/jimhester/lintr). Example of improvement:
+like the one in ROpensci Guidelines in [Advanced R](http://r-pkgs.had.co.nz/r.html#style) or the one used in the [tidyverse styleguide](http://style.tidyverse.org/). They even build some tools to help like [styler](http://styler.r-lib.org/) and [lintr](https://github.com/jimhester/lintr). Example of improvement:
    + put spaces after `for`or `if` and also around `=`, `==`, `+`, `>`, ...
    + indentation of code (in RStudio CTRL+i i useful). for example in `if () { } else { }`, lines of code that are inside brackets should be indented.
    + use `{}` with `if` when it does not fit on one line
@@ -163,6 +175,10 @@ like the one used in the [tidyverse styleguide](http://style.tidyverse.org/). Th
 + Know that when you want to stop on a condition, there is also `stopifnot`. For user experience, you can also return clearer error sometimes with `stop("API request did not return any results", call. = FALSE)` to not show the call for example.
 + in `nomis_codes.R` for example, you have some `missing(codes)` but you put `codes = NULL` as default in the function. 
 + A good practice is also to use meaningful name inside your internal code, even for temporary variable. There are a lot of `x`, `a`, `q`, ... This will improve readability and the ease for others to collaborate on your code (including future you) 
+
+#### About tests
+
++ I did 
 
 
 #### About the timeout and size of data
