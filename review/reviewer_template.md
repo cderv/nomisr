@@ -176,11 +176,6 @@ like the one in ROpensci Guidelines in [Advanced R](http://r-pkgs.had.co.nz/r.ht
 + in `nomis_codes.R` for example, you have some `missing(codes)` but you put `codes = NULL` as default in the function. 
 + A good practice is also to use meaningful name inside your internal code, even for temporary variable. There are a lot of `x`, `a`, `q`, ... This will improve readability and the ease for others to collaborate on your code (including future you) 
 
-#### About tests
-
-+ I did 
-
-
 #### About the timeout and size of data
 
 + If session is `interactive()`, it may be a good idea to warn clearly and even ask if we want to continue when lots of data are being requested. I find myself playing with the example trying to retrieve 208888 of your pages
