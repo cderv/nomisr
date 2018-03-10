@@ -1,0 +1,52 @@
+---
+title: "Second review"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# Site
+
++does not work.
+
+# contributing.md
+
++ ok
++ should be add to .Rbuildignore
++ should be added into README ([Example](https://github.com/ropensci/drake#contributing))
+
+# Readme
+
++ Take care : links won't works when between \`\`. 
+```
+`[tibbles](http://tibble.tidyverse.org/)`
+```
+must be change to 
+```
+[`tibbles`](http://tibble.tidyverse.org/)
+```
+
++ Great improvement. The mention to UK is still missing. Your description is good. Why not add :
+
+> Access UK official statistics from the Nomis database through R
+
++ Nice examples! 
+
+# Vignettes
+
++ still not ok when printing
++ Because the html in github is an old one
++ could use a makefile or git hook
+
+# curl in description
+
++ I read something on that but I did not found it. It may worth ask on ropencsi [forum](https://discuss.ropensci.org/).
+
+# Various
+
++ examples are ok
++ tests are ok
++ there is still commented code in your files. You may put same in seperate branches to clean your master if it is still work in progress.
